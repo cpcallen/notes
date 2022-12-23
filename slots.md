@@ -1,6 +1,6 @@
 # [[Internal Slot]]s, `Symbol`s, `WeakMap`s, and `#private` fields
 
-One issue that comes up when trying to polyfill built-ins (or a "[host-defined facility](https://tc39.es/ecma262/#host-defined)", such as the DOM), is that a lot of built-ins make use of [[[Internal Slots]]](https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots) to store information that can only be accessed via native code; examples include the [[StringData]] slot on [String` exotic objects](https://tc39.es/ecma262/#sec-string-exotic-objects), the [[RegExpMatcher]] slot on `RegExp`s, etc.
+One issue that comes up when trying to polyfill built-ins (or a "[host-defined facility](https://tc39.es/ecma262/#host-defined)", such as the DOM), is that a lot of built-ins make use of [[[Internal Slots]]](https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots) to store information that can only be accessed via native code; examples include the [[StringData]] slot on [`String` exotic objects](https://tc39.es/ecma262/#sec-string-exotic-objects), the [[RegExpMatcher]] slot on `RegExp`s, etc.
 
 A key feature of internal slots is that they are 'tamper-proof', and cannot be modified by manipulating the properties of the object, only by (native) methods.  Notably, they are unaffected by whatever properties might exist on the object.  So, for example, if we have `const myString = new String('hello')`, we can always obtain the value `'hello'` using `String.prototype.toString.call(myString)`; none of the following attempts to modify the stored value will work:
 
